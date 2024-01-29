@@ -1,0 +1,41 @@
+
+@{
+    ViewData["Title"] = "AccountDetail";
+    AcmeLib.Account acct = ViewBag.account;
+}
+
+<h2>@acct.AccountName Details</h2>
+<p><a href="index">Home</a></p>
+<table class="table table-striped">
+    <tr>
+        <td>Date</td>
+        <td>Payee</td>
+        <td>Deposit</td>
+        <td>Check</td>
+        <td>Balance</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Beginning Balance</td>
+        <td></td>
+        <td></td>
+        <td>@Html.FormatValue(acct.StartBalance, "{0:c}")</td>
+    </tr>
+    @{ var bal = acct.StartBalance; }
+    @foreach (AcmeLib.Transaction tx in ViewBag.transactions)
+    {
+        var amt = tx.Type == 1 ? -tx.Amount : tx.Amount;
+        bal += amt;
+    <tr>
+        <td>@Html.FormatValue(tx.Date, "{0:d}")</td>
+        <td>@tx.Payee</td>
+        <td>@if (tx.Type == 2) { @Html.FormatValue(amt, "{0:c}"); }</td>
+        <td>@if (tx.Type == 1) { @Html.FormatValue(amt, "{0:c}");}</td>
+        <td>@Html.FormatValue(bal, "{0:c}")</td>
+    </tr>
+
+
+    }
+
+</table>
+

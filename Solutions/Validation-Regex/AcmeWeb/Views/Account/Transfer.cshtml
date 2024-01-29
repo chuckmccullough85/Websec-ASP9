@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Transfer Funds";
+}
+
+<h2>Transfer Funds</h2>
+
+<form action="DoTransfer">
+    <div class="row">
+        From Account:
+        <select name="fromAcct" class="form-control">
+            @foreach (AcmeLib.Account acct in ViewBag.Accts)
+            {
+                <option value="@acct.Id">@acct.AccountName</option>
+            }
+
+        </select>
+
+    </div>
+
+    <div class="row">
+        To Account:
+        <select name="toAcct" class="form-control">
+            @foreach (AcmeLib.Account acct in ViewBag.Accts)
+            {
+                <option value="@acct.Id">@acct.AccountName</option>
+            }
+
+        </select>
+
+    </div>
+
+    <div class="row">
+        Amount: <input type="text" class="form-control" name="amount" />
+
+    </div>
+    <div class="row">
+        <input type="submit" value="Transfer Funds" />
+    </div>
+</form>

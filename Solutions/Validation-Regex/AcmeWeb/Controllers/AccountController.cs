@@ -1,5 +1,5 @@
+using System.Text.RegularExpressions;
 using AcmeLib;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcmeWebsite.Controllers
@@ -16,7 +16,7 @@ namespace AcmeWebsite.Controllers
             var uid = HttpContext.Session.GetInt32("uid");
             if (uid.HasValue)
             {
-				ViewBag.User = BankService.GetUser(uid.Value);
+                ViewBag.User = BankService.GetUser(uid.Value);
                 var accts = BankService.GetAccounts(uid.Value);
                 return View(accts);
             }
@@ -92,20 +92,20 @@ namespace AcmeWebsite.Controllers
         /// </summary>
         /// <returns></returns>
 		public IActionResult Transfer()
-		{
-			var uid = HttpContext.Session.GetInt32("uid");
-			if (uid.HasValue)
-			{
-				ViewBag.Accts = BankService.GetAccounts(uid.Value);
-				return View();
-			}
-			else
-			{
-				ViewBag.Message = "Session Timeout";
-				return View("../Home/Index");
-			}
+        {
+            var uid = HttpContext.Session.GetInt32("uid");
+            if (uid.HasValue)
+            {
+                ViewBag.Accts = BankService.GetAccounts(uid.Value);
+                return View();
+            }
+            else
+            {
+                ViewBag.Message = "Session Timeout";
+                return View("../Home/Index");
+            }
 
-		}
+        }
 
         /// <summary>
         /// Transfers funds from one user account to another
@@ -114,8 +114,8 @@ namespace AcmeWebsite.Controllers
         /// <param name="toAcct">The id of the account to credit</param>
         /// <param name="amount">The amount to transfer</param>
         /// <returns></returns>
-		public IActionResult DoTransfer (int fromAcct, int toAcct, float amount)
-		{
+		public IActionResult DoTransfer(int fromAcct, int toAcct, float amount)
+        {
             BankService.Transfer(fromAcct, toAcct, amount);
             return Redirect("~/account/Index");
         }
@@ -125,19 +125,19 @@ namespace AcmeWebsite.Controllers
         /// </summary>
         /// <returns></returns>
 		public IActionResult BillPay()
-		{
-			var uid = HttpContext.Session.GetInt32("uid");
-			if (uid.HasValue)
-			{
-				ViewBag.Accts = BankService.GetAccounts(uid.Value);
-				return View();
-			}
-			else
-			{
-				ViewBag.Message = "Session Timeout";
-				return View("../Home/Index");
-			}
-		}
+        {
+            var uid = HttpContext.Session.GetInt32("uid");
+            if (uid.HasValue)
+            {
+                ViewBag.Accts = BankService.GetAccounts(uid.Value);
+                return View();
+            }
+            else
+            {
+                ViewBag.Message = "Session Timeout";
+                return View("../Home/Index");
+            }
+        }
 
         /// <summary>
         /// Handler for the bill pay submit.
@@ -147,19 +147,19 @@ namespace AcmeWebsite.Controllers
         /// <param name="fromAcct">The account from which to pay</param>
         /// <returns></returns>
 		public IActionResult DoBillPay(string payee, float amt, int fromAcct)
-		{
-            if (Regex.IsMatch(payee, @"^[a-zA-Z\s\-']{2,30}$") 
+        {
+            if (Regex.IsMatch(payee, @"^[a-zA-Z\s\-']{2,30}$")
                 && amt is >= 0.01f and <= 10_000.00f)
-                {
-			BankService.PayBill(fromAcct, payee, amt);
-			return Redirect("~/account/Index");
-                }
+            {
+                BankService.PayBill(fromAcct, payee, amt);
+                return Redirect("~/account/Index");
+            }
             else
             {
                 ViewBag.Message = "Invalid Input";
                 return View("BillPay");
             }
-		}
+        }
 
-	}
+    }
 }
