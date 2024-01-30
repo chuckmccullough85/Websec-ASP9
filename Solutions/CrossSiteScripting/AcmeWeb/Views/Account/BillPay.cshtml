@@ -1,0 +1,33 @@
+﻿@model TransferPayModel
+@{
+    ViewData["Title"] = "BillPay";
+}
+
+<h2>Bill Pay</h2>
+
+<div class="container-fluid">
+    <form  asp-action="DoBillPay">
+        <div class="row">
+            <div class="form-group col-lg-3">
+                <label asp-for="FromAccount">Bill Pay Account:</label>
+                <select asp-items="@Model.Accounts" asp-for="FromAccount" class="form-control">
+                </select>
+            </div>
+            <div class="form-group col-lg-3">
+                <label asp-for="Payee">Pay To:</label>
+                <input asp-for="Payee" class="form-control" />
+                <span asp-validation-for="Payee" class="has-error"></span>
+            </div>
+            <div class="form-group col-lg-3">
+                <label asp-for="Amount">Amount:</label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="has-error"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <button class="btn btn-primary" type="submit">Pay Bill</button>
+        </div>
+    </form>
+
+
+</div>

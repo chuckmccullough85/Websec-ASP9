@@ -1,0 +1,31 @@
+﻿@using AcmeWebsite.Models;
+@model TransferModel
+@{
+    ViewData["Title"] = "Transfer Funds";
+}
+
+<h2>Transfer Funds</h2>
+
+<form asp-action="DoTransfer">
+    <div class="row">
+        From Account:
+        <select asp-for="FromAccount" asp-items="@Model.Accounts" class="form-control">
+        </select>
+
+    </div>
+
+    <div class="row">
+        To Account:
+        <select asp-for="ToAccount" asp-items="@Model.Accounts" class="form-control">
+        </select>
+
+    </div>
+
+    <div class="row">
+        Amount: <input type="text" class="form-control" name="amount" />
+
+    </div>
+    <div class="row">
+        <input type="submit" value="Transfer Funds" />
+    </div>
+</form>
