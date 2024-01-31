@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>  
+<!--
+   Author: Steve Chaffin
+   Copyright 1999 by Softivity, All rights reserved
+-->
+
+<!DOCTYPE step SYSTEM "process.dtd" [
+
+  <!ENTITY % menuItems SYSTEM "restEntities.xml" >
+  %menuItems;
+
+]>
+
+<?xml-stylesheet href="orderingFood.xsl" type="text/xsl" ?> 
+
+<step name="mType" shortLbl="Meal Type" >
+
+   <instructions>Select Meal Type</instructions>
+
+   <choice name="Breakfast" >
+
+     <instructions>Click on the labelled buttons above and choices below to make your meal choices.  As you make
+	   your choices, your order and bill will be shown to the right.
+	 </instructions>
+
+     <step name="bMain" shortLbl="Breakfast" selected="yes">
+
+	   <instructions>Breakfast Selections</instructions>
+
+	   <choice name="Ham and Eggs" cost="4.95" >
+
+         <step name="bprep" relate="modif">
+			 <instructions>Preparation</instructions>
+			 <choice name="Scrambled"></choice>
+			 <choice name="Over Easy"></choice>
+		 </step>
+
+	   </choice>
+
+	   <choice name="Pancakes" cost="3.50" >
+	     <option name='with Strawberries'   cost='1.50'/>
+		 <step name='bSide' relate='line' >
+		  <instructions>Side Orders</instructions>
+		  <choice name='Bacon'   cost='2.50'></choice>
+		  <choice name='Sausage' cost='2.75'></choice>
+		</step>
+	   </choice>
+
+	   <choice name="Cereal" cost="2.95" >
+
+		 <step name="bcereals" >
+		     <instructions>Available Cereals</instructions>
+
+			 <choice name="Wheaties"></choice>
+
+			 <choice name="Frosted Flakes"></choice>
+
+			 <choice name="Granola"></choice>
+			 <option name='with Strawberries'   cost='1.50'/>
+		 </step>
+
+		 <step name='bSide' relate='line' >
+		  <instructions>Side Orders</instructions>
+		  <choice name='Bacon'   cost='2.50'></choice>
+		  <choice name='Sausage' cost='2.75'></choice>
+		</step>
+
+	   </choice>
+
+	   <choice name='None'></choice>
+
+	 </step>
+
+     <step name="bDrink" shortLbl="Drink">
+
+	   <instructions>Drink</instructions>
+
+	   <choice name='Coffee' cost='1.10' >
+         <step name='caffeine' relate='modif'>
+		 <choice name='Regular'>
+		 </choice>
+
+		 <choice name='Decaffeinated'>
+		 </choice>
+		</step>
+	</choice>
+	   <choice name='Tea' cost='1.10' >
+
+	 <step name='allTea' relate='modif'>
+		 <instructions>Tea Selections</instructions>
+		 <choice name='Earl Grey'>
+		 </choice>
+
+		 <choice name='English Breakfast'>
+		 </choice>
+
+		 <choice name='Lipton'>
+		 </choice>
+	 </step>
+
+	 <step name='caffeine' relate='modif'>
+		 <choice name='Regular'>
+		 </choice>
+
+		 <choice name='Decaffeinated'>
+		 </choice>
+	 </step>
+
+   </choice>
+   <choice name="Orange Juice" >
+
+	 <step name="bOjSize" relate="modif" >
+		 <instructions>Sizes</instructions>
+		 <choice name="Large" cost="1.95">
+		 </choice>
+
+		 <choice name="Small" cost="1.50">
+		 </choice>
+	 </step>
+
+   </choice>
+   <choice name='None'></choice>
+	 </step>
+
+   </choice>
+
+
+
+   <choice name="Lunch">
+
+     <instructions>Click on the labelled buttons above and choices below to make your meal choices.  As you make
+	   your choices, your order and bill will be shown to the right.
+	 </instructions>
+
+     <step name="lSalad" shortLbl="Salad/Soup" selected="yes">
+	   <instructions>Salad/Soup</instructions>
+	   <choice name='Garden Salad' cost='3.75'><step name='allDressing' relate='modif' >
+		<instructions>Dressings</instructions>
+		<choice name='French'></choice>
+		<choice name='Oil &amp; Vinegar' ></choice>
+		<choice name='Thousand Island'></choice>
+	</step></choice>
+	<choice name='Caesar Salad' cost='4.00'></choice>
+	<choice name='Cobb Salad'   cost='6.50'><step name='allDressing' relate='modif' >
+		<instructions>Dressings</instructions>
+		<choice name='French'></choice>
+		<choice name='Oil &amp; Vinegar' ></choice>
+		<choice name='Thousand Island'></choice>
+	</step></choice>
+	   <choice name='Tomato Soup'  cost='4.00'></choice>
+	<choice name='Lentil Soup'  cost='4.00'></choice>
+	   <choice name='None'></choice>
+	 </step>
+
+     <step name="lMain" shortLbl="Main Course">
+
+	   <instructions>Main Course</instructions>
+
+	   <choice name="Cold Sandwiches" cost="3.50" >
+	     <step name="lCold">
+			<instructions>Select Sandwich Type</instructions>
+		    <choice name="Ham" >
+			  <step name='allBread' relate='modif' >
+		<instructions>Select Bread</instructions>
+			<choice name='White'></choice>
+			<choice name='Wheat'></choice>
+			<choice name='Sourdough'></choice>
+	  </step>
+			  <step name='allCheese' relate='modif' >
+		<instructions>Select Cheese</instructions>
+			<choice name='Cheddar' cost='.50'></choice>
+			<choice name='Swiss'   cost='.50'></choice>
+			<choice name='None'></choice>
+	  </step>
+			</choice>
+			<choice name="Roast Beef">
+			  <step name='allBread' relate='modif' >
+		<instructions>Select Bread</instructions>
+			<choice name='White'></choice>
+			<choice name='Wheat'></choice>
+			<choice name='Sourdough'></choice>
+	  </step>
+			  <step name='allCheese' relate='modif' >
+		<instructions>Select Cheese</instructions>
+			<choice name='Cheddar' cost='.50'></choice>
+			<choice name='Swiss'   cost='.50'></choice>
+			<choice name='None'></choice>
+	  </step>
+			</choice>
+		 </step>
+		 <step name="lColdSide">
+			<instructions>Side Dishes</instructions>
+		   <choice name='French Fries' cost='1.25'></choice>
+	 <choice name='Onion Rings'  cost='1.25'></choice>
+
+		 </step>
+	   </choice>
+
+	   <choice name="Hot Sandwiches"  cost="3.75">
+	     <step name="lHot">
+			<instructions>Select Sandwich Type</instructions>
+		    <choice name="Hamburger">
+			  <step name='allCheese' relate='modif' >
+		<instructions>Select Cheese</instructions>
+			<choice name='Cheddar' cost='.50'></choice>
+			<choice name='Swiss'   cost='.50'></choice>
+			<choice name='None'></choice>
+	  </step>
+			</choice>
+			<choice name="Hot Roast Beef">
+			  <step name='allBread' relate='modif' >
+		<instructions>Select Bread</instructions>
+			<choice name='White'></choice>
+			<choice name='Wheat'></choice>
+			<choice name='Sourdough'></choice>
+	  </step>
+			  <step name='allCheese' relate='modif' >
+		<instructions>Select Cheese</instructions>
+			<choice name='Cheddar' cost='.50'></choice>
+			<choice name='Swiss'   cost='.50'></choice>
+			<choice name='None'></choice>
+	  </step>
+			</choice>
+			<choice name="Barbeque Beef"></choice>
+		 </step>
+		 <step name="lHotSide">
+			<instructions>Side Dishes</instructions>
+		   <choice name='French Fries' cost='1.25'></choice>
+	 <choice name='Onion Rings'  cost='1.25'></choice>
+
+		 </step>
+	   </choice>
+
+	 </step>
+
+     <step name="lDrink" shortLbl="Drink">
+		<instructions>Select Drink</instructions>
+	   <choice name='Coffee' cost='1.10' >
+         <step name='caffeine' relate='modif'>
+	 <choice name='Regular'>
+	 </choice>
+
+	 <choice name='Decaffeinated'>
+	 </choice>
+    </step>
+	</choice>
+	   <choice name='Tea' cost='1.10' >
+
+	 <step name='allTea' relate='modif'>
+		 <instructions>Tea Selections</instructions>
+		 <choice name='Earl Grey'>
+		 </choice>
+
+		 <choice name='English Breakfast'>
+		 </choice>
+
+		 <choice name='Lipton'>
+		 </choice>
+	 </step>
+
+	 <step name='caffeine' relate='modif'>
+	 <choice name='Regular'>
+	 </choice>
+
+	 <choice name='Decaffeinated'>
+	 </choice>
+    </step>
+
+   </choice>
+	   <choice name='Soft Drinks' cost='1.00' >
+
+	 <step name='allSoft' relate='modif'>
+		 <instructions>Soft Drinks</instructions>
+		 <choice name='Coke'></choice>
+		 <choice name='Sprite'></choice>
+		 <choice name='Dr. Pepper'></choice>
+	 </step>
+
+    </choice>
+	   <choice name='Water'>
+	 <step name='allWater' relate='line'>
+		 <choice name='Plain' ></choice>
+		 <choice name='Perrier' cost='1.95' ></choice>
+	 </step>
+    </choice>
+	   <choice name='None'></choice>
+	 </step>
+
+     <step name="lDessert" shortLbl="Dessert">
+		<instructions>Select Dessert</instructions>
+	   <choice name='Fruit Pie' cost='2.50' >
+	 <step name='allFruit' relate='modif'>
+		<instructions>Fruit Pie Selections</instructions>
+		 <choice name='Apple'  ></choice>
+		 <choice name='Cherry' ></choice>
+		 <choice name='Peach'  ></choice>
+		 <option name='Ice Cream' cost='1.25' />
+	 </step>
+	</choice>
+	   <choice name='None'></choice>
+	 </step>
+
+   </choice>
+
+
+
+   <choice name="Dinner"  >
+
+     <instructions>Click on the labelled buttons above and choices below to make your dinner choices.  As you make
+	   your choices, your order and bill will be shown to the right.
+	 </instructions>
+
+     <step name="dDrink" shortLbl="Drink" selected="yes">
+	   <instructions>Select Drink</instructions>
+	   <choice name='Soft Drinks' cost='1.00' >
+
+	 <step name='allSoft' relate='modif'>
+		 <instructions>Soft Drinks</instructions>
+		 <choice name='Coke'></choice>
+		 <choice name='Sprite'></choice>
+		 <choice name='Dr. Pepper'></choice>
+	 </step>
+
+    </choice>
+	   <choice name='White Wine'  >
+	 
+	 <step name='wWine' relate='line'>
+		 <instructions>White Wines by the Glass</instructions>
+		 <choice name='Chardonnay'      cost='4.75'></choice>
+		 <choice name='Sauvignon Blanc' cost='4.25'></choice>
+	 </step>
+
+    </choice>
+
+    <choice name='Red Wine' >
+
+     
+	 <step name='rWine' relate='line'>
+		 <instructions>Red Wines by the Glass</instructions>
+		 <choice name='Cabernet'   cost='5.50'></choice>
+		 <choice name='Merlot'     cost='6.00'></choice>
+		 <choice name='Pinot Noir' cost='5.75'></choice>
+	 </step>
+
+    </choice>
+	   <choice name='Water'>
+	 <step name='allWater' relate='line'>
+		 <choice name='Plain' ></choice>
+		 <choice name='Perrier' cost='1.95' ></choice>
+	 </step>
+    </choice>
+	   <choice name='None'></choice>
+	 </step>
+
+     <step name="dAppetizer" shortLbl="Appetizer">
+	   <instructions>Select Appetizer</instructions>
+	   <choice name='Oysters'    cost='5.75'></choice>
+	<choice name='Crab Cakes' cost='4.00'></choice>
+
+	   <choice name='None'></choice>
+	 </step>
+
+     <step name="dSalad" shortLbl="Soup/Salad">
+	   <instructions>Select Salad or Soup</instructions>
+	   <choice name='Garden Salad' cost='3.75'><step name='allDressing' relate='modif' >
+		<instructions>Dressings</instructions>
+		<choice name='French'></choice>
+		<choice name='Oil &amp; Vinegar' ></choice>
+		<choice name='Thousand Island'></choice>
+	</step></choice>
+	<choice name='Caesar Salad' cost='4.00'></choice>
+	<choice name='Cobb Salad'   cost='6.50'><step name='allDressing' relate='modif' >
+		<instructions>Dressings</instructions>
+		<choice name='French'></choice>
+		<choice name='Oil &amp; Vinegar' ></choice>
+		<choice name='Thousand Island'></choice>
+	</step></choice>
+	   <choice name='Tomato Soup'  cost='4.00'></choice>
+	<choice name='Lentil Soup'  cost='4.00'></choice>
+	   <choice name='None'></choice>
+	 </step>
+
+     <step name="dEntree" shortLbl="Entree">
+
+	   <instructions>Select Entree</instructions>
+
+	   <choice name="New York Steak" cost="18.50" >
+	     <step name='sPrep' relate='modif' >
+		<instructions>Preparation</instructions>
+		<choice name='Rare'        ></choice>
+		<choice name='Medium-Rare' ></choice>
+		<choice name='Medium'      ></choice>
+		<choice name='Medium-Well' ></choice>
+		<choice name='Well-Done'   ></choice>
+	</step>
+		 <step name='sSides' relate='line'>
+		<instructions>Side Dishes</instructions>		  
+		  <choice name='Baked Potato'></choice>
+		  <choice name='French Fries'></choice>
+		  <choice name='Scalloped Potatos'></choice>
+	 </step>
+	 <option name='Mushrooms'/>
+
+	   </choice>
+
+	   <choice name="Prime Rib" >
+	     <step name='ribSize' relate='modif' >
+		<instructions>Serving Size Selections</instructions>
+		<choice name='8 oz.'  cost='12.50' ></choice>
+		<choice name='12 oz.' cost='14.50' ></choice>
+		<choice name='16 oz.' cost='16.50' ></choice>
+	</step>
+	     <step name='sPrep' relate='modif' >
+		<instructions>Preparation</instructions>
+		<choice name='Rare'        ></choice>
+		<choice name='Medium-Rare' ></choice>
+		<choice name='Medium'      ></choice>
+		<choice name='Medium-Well' ></choice>
+		<choice name='Well-Done'   ></choice>
+	</step>
+		 <step name='sSides' relate='line'>
+		<instructions>Side Dishes</instructions>		  
+		  <choice name='Baked Potato'></choice>
+		  <choice name='French Fries'></choice>
+		  <choice name='Scalloped Potatos'></choice>
+	 </step>
+	 <option name='Mushrooms'/>
+
+	   </choice>
+
+	   <choice name="Fettucine Alfredo" cost="10.50" >
+	   </choice>
+
+	 </step>
+
+     <step name="dDessert" shortLbl="Dessert" >
+	   <instructions>Select Dessert</instructions>
+	   <choice name='Fruit Pie' cost='2.50' >
+	 <step name='allFruit' relate='modif'>
+		<instructions>Fruit Pie Selections</instructions>
+		 <choice name='Apple'  ></choice>
+		 <choice name='Cherry' ></choice>
+		 <choice name='Peach'  ></choice>
+		 <option name='Ice Cream' cost='1.25' />
+	 </step>
+	</choice>
+	   <choice name='Cheesecake' cost='3.25'></choice>
+	   <choice name='None'></choice>
+	 </step>
+
+	 <step name="dCoffee" shortLbl="Coffee/Tea">
+	   <instructions>Coffes and Teas</instructions>
+	   <choice name='Coffee' cost='1.10' >
+         <step name='caffeine' relate='modif'>
+	 <choice name='Regular'>
+	 </choice>
+
+	 <choice name='Decaffeinated'>
+	 </choice>
+    </step>
+	</choice>
+	   <choice name='Tea' cost='1.10' >
+
+	 <step name='allTea' relate='modif'>
+		 <instructions>Tea Selections</instructions>
+		 <choice name='Earl Grey'>
+		 </choice>
+
+		 <choice name='English Breakfast'>
+		 </choice>
+
+		 <choice name='Lipton'>
+		 </choice>
+	 </step>
+
+	 <step name='caffeine' relate='modif'>
+	 <choice name='Regular'>
+	 </choice>
+
+	 <choice name='Decaffeinated'>
+	 </choice>
+    </step>
+
+   </choice>
+	   <choice name='None'></choice>
+	 </step>
+
+   </choice>
+
+</step>
+
+     
