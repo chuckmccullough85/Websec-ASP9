@@ -43,6 +43,7 @@ Open and configure the AcmeBank solution
     *StudentWork/Labs/AcmeBank-Initial*
 
 2.  This will open all the files for the case study web site.
+3.  If you are using VS Code, open an integrated terminal in the AcmeWeb folder and run `libman restore` to restore the css & js libraries.
 
 3.  This solutions uses SQLite as the database.
 
